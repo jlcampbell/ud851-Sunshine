@@ -12,10 +12,10 @@ import java.lang.reflect.Constructor;
 
 public class ForecastAdapter {
     public class ForecastAdapterViewHolder extends RecyclerView.ViewHolder {
-        public final TextView mWeatherTextView;
-
-        Constructor ViewConstructor(View view){
-            super(view);
+        TextView mWeatherTextView;
+        public ForecastAdapterViewHolder(View itemView){
+           super(itemView);
+           mWeatherTextView = (TextView) itemView.findViewById(R.id.tv_weather_data);
         }
     }
 }
