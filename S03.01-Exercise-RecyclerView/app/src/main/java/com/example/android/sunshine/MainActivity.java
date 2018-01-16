@@ -51,9 +51,9 @@ public class MainActivity extends AppCompatActivity {
 
     // Within ForecastAdapter.java /////////////////////////////////////////////////////////////////
     // c (15) Add a class file called ForecastAdapter
-    // TODO (22) Extend RecyclerView.Adapter<ForecastAdapter.ForecastAdapterViewHolder>
+    // c (22) Extend RecyclerView.Adapter<ForecastAdapter.ForecastAdapterViewHolder>
 
-    // TODO (23) Create a private string array called mWeatherData
+    // c (23) Create a private string array called mWeatherData
 
     // TODO (47) Create the default constructor (we will pass in parameters in a later lesson)
 
@@ -69,9 +69,9 @@ public class MainActivity extends AppCompatActivity {
     // Within ForecastAdapterViewHolder ///////////////////////////////////////////////////////////
 
 
-    // TODO (24) Override onCreateViewHolder
-    // TODO (25) Within onCreateViewHolder, inflate the list item xml into a view
-    // TODO (26) Within onCreateViewHolder, return a new ForecastAdapterViewHolder with the above view passed in as a parameter
+    // c (24) Override onCreateViewHolder
+    // c (25) Within onCreateViewHolder, inflate the list item xml into a view
+    // c (26) Within onCreateViewHolder, return a new ForecastAdapterViewHolder with the above view passed in as a parameter
 
     // TODO (27) Override onBindViewHolder
     // TODO (28) Set the text of the TextView to the weather for this list item's position
