@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+
 import java.lang.reflect.Constructor;
 import java.util.zip.Inflater;
 
@@ -16,20 +18,30 @@ import java.util.zip.Inflater;
 public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapterViewHolder>{
     private String[] mWeatherData;
     @Override
-    public ForecastAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType, LayoutInflater inflater) {
-        View view;
-        view = inflater.inflate(R.layout.forecast_list_item, parent, false);
+    public ForecastAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.forecast_list_item, parent, false);
         return new ForecastAdapterViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ForecastAdapterViewHolder holder, int position) {
 
+        ((ForecastAdapterViewHolder) holder).mWeatherTextView.setText(mWeatherData[position]);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        if (mWeatherData == null){
+            return 0;
+        }
+        else {
+            return mWeatherData.length;
+        }
+    }
+    // saves weatherData to mWeatherData
+    public void setWeatherData(String[] weatherData){
+        mWeatherData = weatherData;
+        notifyDataSetChanged();
     }
 
     public class ForecastAdapterViewHolder extends RecyclerView.ViewHolder {
