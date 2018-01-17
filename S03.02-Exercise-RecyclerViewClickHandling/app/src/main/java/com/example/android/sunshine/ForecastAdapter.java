@@ -29,31 +29,45 @@ import android.widget.TextView;
 public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapterViewHolder> {
 
     private String[] mWeatherData;
+    final private ForecastAdapterOnClickHandler mClickHandler;
+    // c (3) Create a final private ForecastAdapterOnClickHandler called mClickHandler
 
-    // TODO (3) Create a final private ForecastAdapterOnClickHandler called mClickHandler
+    // c (1) Add an interface called ForecastAdapterOnClickHandler
+    public interface ForecastAdapterOnClickHandler{
+        void onClick(String string);
+    };
+    // c (2) Within that interface, define a void method that access a String as a parameter
 
-    // TODO (1) Add an interface called ForecastAdapterOnClickHandler
-    // TODO (2) Within that interface, define a void method that access a String as a parameter
-
-    // TODO (4) Add a ForecastAdapterOnClickHandler as a parameter to the constructor and store it in mClickHandler
-    public ForecastAdapter() {
-
+    // c (4) Add a ForecastAdapterOnClickHandler as a parameter to the constructor and store it in mClickHandler
+    public ForecastAdapter(ForecastAdapterOnClickHandler adapter) {
+        mClickHandler = adapter;
     }
 
-    // TODO (5) Implement OnClickListener in the ForecastAdapterViewHolder class
+    // c (5) Implement OnClickListener in the ForecastAdapterViewHolder class
     /**
      * Cache of the children views for a forecast list item.
      */
-    public class ForecastAdapterViewHolder extends RecyclerView.ViewHolder {
-        public final TextView mWeatherTextView;
+    public class ForecastAdapterViewHolder extends RecyclerView.ViewHolder
+        implements View.OnClickListener {
+
+        TextView mWeatherTextView;
 
         public ForecastAdapterViewHolder(View view) {
             super(view);
             mWeatherTextView = (TextView) view.findViewById(R.id.tv_weather_data);
-            // TODO (7) Call setOnClickListener on the view passed into the constructor (use 'this' as the OnClickListener)
+            // c (7) Call setOnClickListener on the view passed into the constructor (use 'this' as the OnClickListener)
+            view.setOnClickListener(this);
         }
 
-        // TODO (6) Override onClick, passing the clicked day's data to mClickHandler via its onClick method
+
+        // c (6) Override onClick, passing the clicked day's data to mClickHandler via its onClick method
+
+        @Override
+        public void onClick(View v) {
+            int clickedPosition = getAdapterPosition();
+            String daysData = mWeatherData[clickedPosition];
+            mClickHandler.onClick(daysData);
+        }
     }
 
     /**
