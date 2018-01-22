@@ -14,14 +14,6 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
 
-         Toolbar myChildToolbar =
-                (Toolbar) findViewById(R.id.child_toolbar);
-        setSupportActionBar(myChildToolbar);
 
-        // Get a support ActionBar corresponding to this toolbar
-        ActionBar ab = getSupportActionBar();
-
-        // Enable the Up button
-        ab.setDisplayHomeAsUpEnabled(true);
     }
 }

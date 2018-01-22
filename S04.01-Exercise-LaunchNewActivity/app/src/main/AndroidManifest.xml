@@ -35,10 +35,14 @@
             </intent-filter>
         </activity>
         <!-- TODO (4) Configure DetailActivity's up button functionality -->
-        <activity android:name=".DetailActivity"
-                android:parentActivityName=".MainActivity">
-                <meta-data
-                    android:name="android.support.MainA"></meta-data>
+        <activity android:name="com.example.android.sunshine.DetailActivity"
+                android:label="@string/title_detail_activity"
+                android:parentActivityName="com.example.android.sunshine.MainActivity">
+
+
+            <meta-data
+                    android:name="android.support.MainA"
+                    android:value="com.example.android.sunshine.MainActivity"></meta-data>
         </activity>
     </application>
 
