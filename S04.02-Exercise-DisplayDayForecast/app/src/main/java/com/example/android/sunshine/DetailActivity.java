@@ -1,7 +1,9 @@
 package com.example.android.sunshine;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -12,6 +14,11 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        TextView weatherDetail = (TextView) findViewById(R.id.detail_weather);
+
         // TODO (2) Display the weather forecast that was passed from MainActivity
+        Intent mIntent = getIntent();
+        String weather = mIntent.getStringExtra("com.example.android.sunshine.daysweather").toString();
+        weatherDetail.setText(weather);
     }
 }
