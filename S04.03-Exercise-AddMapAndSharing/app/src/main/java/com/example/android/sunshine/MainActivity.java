@@ -210,6 +210,37 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
         /* Return true so that the menu is displayed in the Toolbar */
         return true;
     }
+    //build a Uri for the given location
+    public void openMap(){
+       //get location alternative ways next
+        String location = "1600 Amphitheatre Parkway, CA";
+
+        //build uri with uri builder
+        Uri.Builder builder = new Uri.Builder();
+            builder.scheme("geo");
+                   // .path("0,0")
+                   // .query(location);
+            builder.appendQueryParameter("q",location);
+        Uri locationUri = builder.build();
+
+        //showMap
+       showMap(locationUri);
+    }
+
+    private void showMap(Uri location){
+    // use an implicit intent to view the map
+        //ACTION_VIEW shows the user a piece of data in whatever form is reasonable for that piece of data
+        // create a action view intent and give it location data means it will show the user a map
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW);
+
+        mapIntent.setData(location);
+
+        //resolve activity calls first activity that can handle event
+        if (mapIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(mapIntent);
+        }
+
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -220,8 +251,11 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
             loadWeatherData();
             return true;
         }
-
-        // TODO (2) Launch the map when the map menu item is clicked
+        if (id == R.id.action_show_map){
+            openMap();
+            return true;
+        }
+        // c (2) Launch the map when the map menu item is clicked
 
         return super.onOptionsItemSelected(item);
     }
