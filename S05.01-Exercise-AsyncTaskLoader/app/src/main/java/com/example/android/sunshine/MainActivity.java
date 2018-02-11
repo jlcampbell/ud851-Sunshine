@@ -257,7 +257,7 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapterOn
 
 
     // TODO (6) Remove any and all code from MainActivity that references FetchWeatherTask
-    
+
 
     /**
      * This method uses the URI scheme for showing a location found on a

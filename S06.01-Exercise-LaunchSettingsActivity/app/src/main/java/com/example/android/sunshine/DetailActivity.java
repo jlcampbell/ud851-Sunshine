@@ -2,7 +2,9 @@ package com.example.android.sunshine;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v4.app.ShareCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,6 +32,8 @@ public class DetailActivity extends AppCompatActivity {
                 mWeatherDisplay.setText(mForecast);
             }
         }
+
+
     }
 
     /**
@@ -47,13 +51,35 @@ public class DetailActivity extends AppCompatActivity {
         return shareIntent;
     }
 
+    private Intent createSettingsIntent() {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+        return intent;
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.detail, menu);
-        MenuItem menuItem = menu.findItem(R.id.action_share);
-        menuItem.setIntent(createShareForecastIntent());
+
+        MenuItem menuItemShare = menu.findItem(R.id.action_share);
+        menuItemShare.setIntent(createShareForecastIntent());
+
+
         return true;
     }
 
-    // TODO (7) Launch SettingsActivity when the Settings option is clicked
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        if (id == R.id.action_settings){
+            Intent intent = new Intent(this, SettingsActivity.class);
+
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+    // c (7) Launch SettingsActivity when the Settings option is clicked
+
 }
