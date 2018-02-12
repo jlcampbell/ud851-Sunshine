@@ -15,8 +15,10 @@
  */
 package com.example.android.sunshine;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.preference.PreferenceManager;
 import android.view.MenuItem;
 
 /**
@@ -30,27 +32,29 @@ public class SettingsActivity extends AppCompatActivity {
         this.setContentView(R.layout.activity_settings);
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // TODO (2) Create an xml resource directory
-        // TODO (3) Add a PreferenceScreen with an EditTextPreference and ListPreference within the newly created xml resource directory
+        // c (2) Create an xml resource directory
+        // c (3) Add a PreferenceScreen with an EditTextPreference and ListPreference within the newly created xml resource directory
 
-        // TODO (4) Create SettingsFragment and extend PreferenceFragmentCompat
+        // c (4) Create SettingsFragment and extend PreferenceFragmentCompat
 
         // Do steps 5 - 11 within SettingsFragment
-        // TODO (10) Implement OnSharedPreferenceChangeListener from SettingsFragment
+        // c (10) Implement OnSharedPreferenceChangeListener from SettingsFragment
 
-        // TODO (8) Create a method called setPreferenceSummary that accepts a Preference and an Object and sets the summary of the preference
+        // c (8) Create a method called setPreferenceSummary that accepts a Preference and an Object and sets the summary of the preference
 
-        // TODO (5) Override onCreatePreferences and add the preference xml file using addPreferencesFromResource
+        // c (5) Override onCreatePreferences and add the preference xml file using addPreferencesFromResource
 
         // Do step 9 within onCreatePreference
-        // TODO (9) Set the preference summary on each preference that isn't a CheckBoxPreference
+        // c (9) Set the preference summary on each preference that isn't a CheckBoxPreference
 
-        // TODO (13) Unregister SettingsFragment (this) as a SharedPreferenceChangedListener in onStop
+        // c (13) Unregister SettingsFragment (this) as a SharedPreferenceChangedListener in onStop
 
-        // TODO (12) Register SettingsFragment (this) as a SharedPreferenceChangedListener in onStart
+        // c (12) Register SettingsFragment (this) as a SharedPreferenceChangedListener in onStart
 
-        // TODO (11) Override onSharedPreferenceChanged to update non CheckBoxPreferences when they are changed
+        // c (11) Override onSharedPreferenceChanged to update non CheckBoxPreferences when they are changed
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

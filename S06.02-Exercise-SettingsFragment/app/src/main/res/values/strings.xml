@@ -171,6 +171,9 @@
 
     <string name="condition_unknown">Unknown (<xliff:g id="conditionId">%1$d</xliff:g>)</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="settings_fragment">Settings Fragment</string>
+
 
     <!-- - - - - - - - - - - -->
     <!-- Used by NetworkUtils-->
