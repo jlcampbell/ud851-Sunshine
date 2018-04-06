@@ -15,17 +15,66 @@
  */
 package com.example.android.sunshine.sync;
 
+import android.content.ContentProvider;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+import android.support.v4.content.CursorLoader;
+
+import com.example.android.sunshine.MainActivity;
+import com.example.android.sunshine.data.WeatherContract;
+import com.example.android.sunshine.data.WeatherProvider;
 
 
 public class SunshineSyncUtils {
 
-//  TODO (1) Declare a private static boolean field called sInitialized
+//  c (1) Declare a private static boolean field called sInitialized
+    private static boolean sInitialized;
+    private static AsyncTask mBackgroundTask;
+    private static Cursor mCursor;
 
-    //  TODO (2) Create a synchronized public static void method called initialize
-    //  TODO (3) Only execute this method body if sInitialized is false
+    //  c (2) Create a synchronized public static void method called initialize
+    public static void initialize(final Context context){
+
+
+        if (!sInitialized){
+            sInitialized = true;
+
+            mBackgroundTask = new AsyncTask() {
+                @Override
+                protected Object doInBackground(Object[] objects) {
+                    Uri forecastQueryUri = WeatherContract.WeatherEntry.CONTENT_URI;
+                /* Sort order: Ascending by date */
+                    String sortOrder = WeatherContract.WeatherEntry.COLUMN_DATE + " ASC";
+                /*
+                 * A SELECTION in SQL declares which rows you'd like to return. In our case, we
+                 * want all weather data from today onwards that is stored in our weather table.
+                 * We created a handy method to do that in our WeatherEntry class.
+                 */
+                    String selection = WeatherContract.WeatherEntry.getSqlSelectForTodayOnwards();
+
+                    mCursor = context.getContentResolver().query(
+                            forecastQueryUri,
+                            MainActivity.MAIN_FORECAST_PROJECTION,
+                            selection,
+                            null,
+                            sortOrder
+                    );
+                    if (mCursor.getCount() == 0 || mCursor.equals(null)){
+                        startImmediateSync(context);
+                    }
+
+                    return null;
+                }
+            };
+
+        }
+    }
+    //  c (3) Only execute this method body if sInitialized is false
     //  TODO (4) If the method body is executed, set sInitialized to true
     //  TODO (5) Check to see if our weather ContentProvider is empty
         //  TODO (6) If it is empty or we have a null Cursor, sync the weather now!
